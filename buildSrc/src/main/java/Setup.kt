@@ -291,11 +291,11 @@ fun Project.setupStub() {
                     ZipOutputStream(apk.outputStream()).use {
                         it.setLevel(Deflater.BEST_COMPRESSION)
                         it.putNextEntry(ZipEntry("AndroidManifest.xml"))
-                        src.getInputStream(src.getEntry("AndroidManifest.xml")).transferTo(it)
+                        src.getInputStream(src.getEntry("AndroidManifest.xml")).copyTo(it)
                         it.closeEntry()
                     }
                     DeflaterOutputStream(bos, Deflater(Deflater.BEST_COMPRESSION)).use {
-                        src.getInputStream(src.getEntry("resources.arsc")).transferTo(it)
+                        src.getInputStream(src.getEntry("resources.arsc")).copyTo(it)
                     }
                 }
                 apkTmp.delete()

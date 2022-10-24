@@ -218,7 +218,7 @@ fun genEncryptedResources(res: InputStream, outDir: File) {
 
     res.use {
         CipherOutputStream(bos, cipher).use { os ->
-            it.transferTo(os)
+            it.copyTo(os)
         }
     }
 
